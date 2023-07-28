@@ -753,7 +753,7 @@ async def goToDestination(p, destinationZone, p1WorldName, bigStackDestinations,
             # these have to be hardcoded
             # if a player recalls to a dungeon, then attempts to return to the hub, they go through two zone changes: once to the hub, second back to the zone they were in before recalling
             # this makes it impossible to account for zone changes without having ridiculously long sleeps or hardcoded zone names
-            worldHubsList = ['WizardCity/WC_Ravenwood_Teleporter', 'WizardCity/WC_Ravenwood', 'Krokotopia/KT_WorldTeleporter', 'Krokotopia/KT_Hub', 'Marleybone/Interiors/MB_WolfminsterAbbey', 'Marleybone/MB_Hub', 'DragonSpire/DS_Hub_Cathedral', 'MooShu/Interiors/MS_Teleport_Chamber', 'MooShu/MS_Hub', 'Celestia/CL_Hub', 'Wysteria/PA_Hub', 'Grizzleheim/GH_MainHub', 'Zafaria/ZF_Z00_Hub', 'Avalon/AV_Z00_Hub', 'Azteca/AZ_Z00_Zocalo', 'Khrysalis/KR_Z00_Hub', 'Polaris/PL_Z00_Walruskberg', 'Mirage/MR_Z00_Hub', 'Karamelle/KM_Z00_HUB', 'Empyrea/EM_Z00_Aeriel_HUB', 'Lemuria/LM_Z00_Hub']
+            worldHubsList = ['Novus/NV_Z01_Conatus','WizardCity/WC_Ravenwood_Teleporter', 'WizardCity/WC_Ravenwood', 'Krokotopia/KT_WorldTeleporter', 'Krokotopia/KT_Hub', 'Marleybone/Interiors/MB_WolfminsterAbbey', 'Marleybone/MB_Hub', 'DragonSpire/DS_Hub_Cathedral', 'MooShu/Interiors/MS_Teleport_Chamber', 'MooShu/MS_Hub', 'Celestia/CL_Hub', 'Wysteria/PA_Hub', 'Grizzleheim/GH_MainHub', 'Zafaria/ZF_Z00_Hub', 'Avalon/AV_Z00_Hub', 'Azteca/AZ_Z00_Zocalo', 'Khrysalis/KR_Z00_Hub', 'Polaris/PL_Z00_Walruskberg', 'Mirage/MR_Z00_Hub', 'Karamelle/KM_Z00_HUB', 'Empyrea/EM_Z00_Aeriel_HUB', 'Lemuria/LM_Z00_Hub']
 
             currentZone = await p.zone_name()
             while currentZone not in worldHubsList:
@@ -1110,7 +1110,8 @@ async def main(clientHandler):
 
     
     try:
-        await toZoneDisplayName(clients, 'golem court')
+        # await toZoneDisplayName(clients, 'golem court')
+        await toZone(clients, "Novus/NV_Z06_NucleusGallery")
     finally:
         logger.info('Script complete')
 
