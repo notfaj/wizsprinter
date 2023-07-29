@@ -27,6 +27,7 @@ standard;2776.0;-1948.0;25.498626708984375;WizardCity/WC_Streets/WC_Cyclops;Wiza
 standard;3087.6220703125;283.03350830078125;4.829071044921875;WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Shop_Area
 standard;-1700.9173583984375;2233.119140625;-273.0872497558594;WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Streets/Interiors/WC_OldeTown_AuctionHouse
 standard;4.049127578735352;-247.4910888671875;-0.05535888671875;WizardCity/WC_Streets/Interiors/WC_OldeTown_AuctionHouse;WizardCity/WC_Streets/WC_OldeTown
+xNoWait;-10488.517578125;8220.810546875;25.89996337890625;WizardCity/WC_Streets/WC_Cyclops;Aquila/AQ_Z00_Hub
 END
 WORLD - Krokotopia
 dungeon;4641.568359375;3642.033935546875;0.000579833984375;Krokotopia/KT_Krokosphinx/KT_EntranceHall;Krokotopia/KT_Krokosphinx/KT_Retreat

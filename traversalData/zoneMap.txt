@@ -12,6 +12,7 @@ ZONEDOOR;WizardCity/WC_Ravenwood_Teleporter
 				WizardCity/WC_Shop_Area;WizardCity/WC_Streets/WC_OldeTown
 					WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Streets/Interiors/WC_OldeTown_AuctionHouse
 					WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Streets/WC_Cyclops
+						WizardCity/WC_Streets/WC_Cyclops;Aquila/AQ_Z00_Hub
 					WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Streets/WC_Triton
 					WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Streets/WC_Firecat
 END
