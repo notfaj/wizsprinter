@@ -55,16 +55,15 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
-        await p.mouse_handler.activate_mouseless()
-        await asyncio.sleep(1)
+        async with p.mouse_handler:
+            await asyncio.sleep(1)
 
-        try:
-            await p.mouse_handler.click_window_with_name('centerButton')
-            await p.wait_for_zone_change()
-        except ValueError:
-            await asyncio.sleep(8)
+            try:
+                await p.mouse_handler.click_window_with_name('centerButton')
+                await p.wait_for_zone_change()
+            except ValueError:
+                await asyncio.sleep(8)
 
-        await p.mouse_handler.deactivate_mouseless()
 
     elif zoneAccessType == 'xNoWait':
 
@@ -200,25 +199,23 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
         await p.teleport(XYZ(float(x), float(y), float(z)))
         await asyncio.sleep(1)
 
-        await p.mouse_handler.activate_mouseless()
+        async with p.mouse_handler:
+            try:
+                await p.mouse_handler.click_window_with_name('centerButton')
+            except ValueError:
+                await asyncio.sleep(0.01)
 
-        try:
-            await p.mouse_handler.click_window_with_name('centerButton')
-        except ValueError:
-            await asyncio.sleep(0.01)
+            await p.wait_for_zone_change()
 
-        await p.wait_for_zone_change()
+            while not await p.is_in_npc_range():
+                pass
 
-        while not await p.is_in_npc_range():
-            pass
+            while await p.is_in_npc_range():
+                await asyncio.sleep(.4)
+                await p.send_key(Keycode.X, 0.1)
 
-        while await p.is_in_npc_range():
-            await asyncio.sleep(.4)
-            await p.send_key(Keycode.X, 0.1)
+            await p.wait_for_zone_change()
 
-        await p.wait_for_zone_change()
-
-        await p.mouse_handler.deactivate_mouseless()
 
     elif zoneAccessType == 'xNoWaitSkipRideMarleyboneHydeReturn':
         await p.teleport(XYZ(float(x), float(y), float(z)))
@@ -414,15 +411,15 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
-        await p.mouse_handler.activate_mouseless()
-        await asyncio.sleep(1)
+        async with p.mouse_handler:
+            await asyncio.sleep(1)
 
-        try:
-            await p.mouse_handler.click_window_with_name('centerButton')
-        except ValueError:
-            await asyncio.sleep(0.01)
+            try:
+                await p.mouse_handler.click_window_with_name('centerButton')
+            except ValueError:
+                await asyncio.sleep(0.01)
 
-        await p.mouse_handler.deactivate_mouseless()
+
 
         await p.wait_for_zone_change()
 
@@ -475,28 +472,28 @@ async def interactiveTeleportToZone(p, menuButtonNumber):
         await asyncio.sleep(.4)
 
     await asyncio.sleep(.4)
-    await p.mouse_handler.activate_mouseless()
 
-    # 4 buttons per page - menuButtonNum / 4 rounded up to nearest whole number equals the page that the button is on
-    actualButtonToClick = menuButtonNumber
+    async with p.mouse_handler:
+        # 4 buttons per page - menuButtonNum / 4 rounded up to nearest whole number equals the page that the button is on
+        actualButtonToClick = menuButtonNumber
 
-    if menuButtonNumber > 4:
-        pageNum = int(math.ceil(menuButtonNumber / 4)) - 1
-        # click to correct page
-        if pageNum > 0:
-            for i in range(pageNum):
-                await p.mouse_handler.click_window_with_name('rightButton')
-                await asyncio.sleep(0.4)
+        if menuButtonNumber > 4:
+            pageNum = int(math.ceil(menuButtonNumber / 4)) - 1
+            # click to correct page
+            if pageNum > 0:
+                for i in range(pageNum):
+                    await p.mouse_handler.click_window_with_name('rightButton')
+                    await asyncio.sleep(0.4)
 
-        # the actual button number on the page, considering that there are 4 buttons per page (0 -> 3)
-        actualButtonToClick = ((menuButtonNumber) - ((pageNum) * 4))
+            # the actual button number on the page, considering that there are 4 buttons per page (0 -> 3)
+            actualButtonToClick = ((menuButtonNumber) - ((pageNum) * 4))
 
-    await p.mouse_handler.click_window_with_name('opt' + str(actualButtonToClick - 1))
-    await asyncio.sleep(.4)
-    await p.mouse_handler.click_window_with_name('teleportButton')
-    await p.wait_for_zone_change()
+        await p.mouse_handler.click_window_with_name('opt' + str(actualButtonToClick - 1))
+        await asyncio.sleep(.4)
+        await p.mouse_handler.click_window_with_name('teleportButton')
+        await p.wait_for_zone_change()
 
-    await p.mouse_handler.deactivate_mouseless()
+
 
 
 @logger.catch()
@@ -574,60 +571,58 @@ async def goToNewWorld(p, destinationWorld):
         await p.send_key(Keycode.X, 0.1)
         await asyncio.sleep(.4)
 
-    await p.mouse_handler.activate_mouseless()
+    
+    async with p.mouse_handler:
+        # each worldList item (in-file name for a world) correlates to a zoneDoorOptions (in-file name for the buttons in the spiral door)
+        worldList = ["WizardCity", "Krokotopia", "Marleybone", "MooShu", "DragonSpire", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria"]
+        zoneDoorOptions = ["wbtnWizardCity", "wbtnKrokotopia", "wbtnMarleybone", "wbtnMooShu", "wbtnDragonSpire", "wbtnGrizzleheim", "wbtnCelestia", "wbtnWysteria", "wbtnZafaria", "wbtnAvalon", "wbtnAzteca", "wbtnKhrysalis", "wbtnPolaris", "wbtnArcanum", "wbtnMirage", "wbtnEmpyrea", "wbtnKaramelle", "wbtnLemuria"]
+        zoneDoorNameList = ["Wizard City", "Krokotopia", "Marleybone", "MooShu", "Dragonspyre", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria"]
 
-    # each worldList item (in-file name for a world) correlates to a zoneDoorOptions (in-file name for the buttons in the spiral door)
-    worldList = ["WizardCity", "Krokotopia", "Marleybone", "MooShu", "DragonSpire", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria"]
-    zoneDoorOptions = ["wbtnWizardCity", "wbtnKrokotopia", "wbtnMarleybone", "wbtnMooShu", "wbtnDragonSpire", "wbtnGrizzleheim", "wbtnCelestia", "wbtnWysteria", "wbtnZafaria", "wbtnAvalon", "wbtnAzteca", "wbtnKhrysalis", "wbtnPolaris", "wbtnArcanum", "wbtnMirage", "wbtnEmpyrea", "wbtnKaramelle", "wbtnLemuria"]
-    zoneDoorNameList = ["Wizard City", "Krokotopia", "Marleybone", "MooShu", "Dragonspyre", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria"]
+        option_window = await p.root_window.get_windows_with_name("optionWindow")
 
-    option_window = await p.root_window.get_windows_with_name("optionWindow")
+        assert len(option_window) == 1, str(option_window)
 
-    assert len(option_window) == 1, str(option_window)
-
-    # Get page count, current selected page number, and max page number
-    for child in await option_window[0].children():
-        if await child.name() == 'pageCount':
-            pageCount = await child.maybe_text()
-            pageCount = pageCount[8:-9]
-            currentPage = pageCount.split('/', 1)[0]
-            maxPage = pageCount.split('/', 1)[1]
-            break
-
-    # user could be on any of the three pages when opening the world door depending on what their active quest is
-    # switch all the way to the first page to standardize it
-    # in case wizwalker misclicked / didn't click enough originally when resetting to page 1, ensure we are on page 1 (and if not click over again)
-    while str(currentPage) != '1':
-        await p.mouse_handler.click_window_with_name('leftButton')
-        await asyncio.sleep(0.2)
+        # Get page count, current selected page number, and max page number
         for child in await option_window[0].children():
             if await child.name() == 'pageCount':
                 pageCount = await child.maybe_text()
                 pageCount = pageCount[8:-9]
                 currentPage = pageCount.split('/', 1)[0]
+                maxPage = pageCount.split('/', 1)[1]
+                break
 
-    worldIndex = worldList.index(destinationWorld)
-    spiralGateName = zoneDoorNameList[worldIndex]
+        # user could be on any of the three pages when opening the world door depending on what their active quest is
+        # switch all the way to the first page to standardize it
+        # in case wizwalker misclicked / didn't click enough originally when resetting to page 1, ensure we are on page 1 (and if not click over again)
+        while str(currentPage) != '1':
+            await p.mouse_handler.click_window_with_name('leftButton')
+            await asyncio.sleep(0.2)
+            for child in await option_window[0].children():
+                if await child.name() == 'pageCount':
+                    pageCount = await child.maybe_text()
+                    pageCount = pageCount[8:-9]
+                    currentPage = pageCount.split('/', 1)[0]
 
-    isChildFound = False
+        worldIndex = worldList.index(destinationWorld)
+        spiralGateName = zoneDoorNameList[worldIndex]
 
-    for i in range(int(maxPage)):
-        for child in await option_window[0].children():
-            if await child.name() in ['opt0', 'opt1', 'opt2', 'opt3']:
-                name = await read_control_checkbox_text(child)
-                if name == spiralGateName:
-                    await p.mouse_handler.click_window_with_name(zoneDoorOptions[worldIndex])
-                    await asyncio.sleep(.4)
-                    await p.mouse_handler.click_window_with_name('teleportButton')
-                    await p.wait_for_zone_change()
+        isChildFound = False
 
-                    await p.mouse_handler.deactivate_mouseless()
+        for i in range(int(maxPage)):
+            for child in await option_window[0].children():
+                if await child.name() in ['opt0', 'opt1', 'opt2', 'opt3']:
+                    name = await read_control_checkbox_text(child)
+                    if name == spiralGateName:
+                        await p.mouse_handler.click_window_with_name(zoneDoorOptions[worldIndex])
+                        await asyncio.sleep(.4)
+                        await p.mouse_handler.click_window_with_name('teleportButton')
+                        await p.wait_for_zone_change()
 
-                    # move away from the spiral door so we dont accidentally click on it again after teleporting later
-                    await p.send_key(Keycode.W, 1.5)
+                        # move away from the spiral door so we dont accidentally click on it again after teleporting later
+                        await p.send_key(Keycode.W, 1.5)
 
-                    isChildFound = True
-                    break
+                        isChildFound = True
+                        break
 
         # correct world was not found - check the next page
         if not isChildFound:
@@ -1054,46 +1049,36 @@ async def refillPotions(clients):
 
     # Walk to potion vendor
     for client in clients:
-
-        try:
-            await client.mouse_handler.activate_mouseless()
-        except:
-            logger.error('MOUSELESS ERROR')
-
-        await client.goto(-0.5264079570770264, -3021.25244140625)
-        await client.send_key(Keycode.W, 0.5)
-        await client.wait_for_zone_change()
-        await client.goto(11.836355209350586, -1816.455078125)
-        await client.send_key(Keycode.W, 0.5)
-        await client.wait_for_zone_change()
-        await client.goto(-587.87927246093752, 404.43939208984375)
-        await asyncio.sleep(1)
-        await client.goto(-3965.254638671875, 1535.5472412109375)
-        await asyncio.sleep(1)
-        await client.goto(-4442.06005859375, 1001.5532836914062)
-        await asyncio.sleep(1)
-        while not await client.is_in_npc_range():
+        async with client.mouse_handler:
+            await client.goto(-0.5264079570770264, -3021.25244140625)
+            await client.send_key(Keycode.W, 0.5)
+            await client.wait_for_zone_change()
+            await client.goto(11.836355209350586, -1816.455078125)
+            await client.send_key(Keycode.W, 0.5)
+            await client.wait_for_zone_change()
+            await client.goto(-587.87927246093752, 404.43939208984375)
+            await asyncio.sleep(1)
+            await client.goto(-3965.254638671875, 1535.5472412109375)
+            await asyncio.sleep(1)
             await client.goto(-4442.06005859375, 1001.5532836914062)
-        await client.send_key(Keycode.X, 0.1)
-        await asyncio.sleep(1)
-        # Buy potions
-        while True:
-            try:
-                for i in "fillallpotions", "buyAction", "btnShopPotions", "centerButton", "fillonepotion", "buyAction", "exit":
-                    await client.mouse_handler.click_window_with_name(i)
-                    await asyncio.sleep(0.4)
-            except ValueError:
-                continue
-            break
+            await asyncio.sleep(1)
+            while not await client.is_in_npc_range():
+                await client.goto(-4442.06005859375, 1001.5532836914062)
+            await client.send_key(Keycode.X, 0.1)
+            await asyncio.sleep(1)
+            # Buy potions
+            while True:
+                try:
+                    for i in "fillallpotions", "buyAction", "btnShopPotions", "centerButton", "fillonepotion", "buyAction", "exit":
+                        await client.mouse_handler.click_window_with_name(i)
+                        await asyncio.sleep(0.4)
+                except ValueError:
+                    continue
+                break
 
-        try:
-            await client.mouse_handler.deactivate_mouseless()
-        except:
-            logger.error('MOUSELESS ERROR')
-
-        # Return
-        await client.send_key(Keycode.PAGE_UP, 0.1)
-        await client.wait_for_zone_change()
+            # Return
+            await client.send_key(Keycode.PAGE_UP, 0.1)
+            await client.wait_for_zone_change()
 
 
 @logger.catch()
