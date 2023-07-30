@@ -9,6 +9,7 @@ from loguru import logger
 from itertools import takewhile
 import math
 from wizwalker.memory import Window
+from wizwalker import Client
 
 handleQuestCollection = True
 is_tab = '\t'.__eq__
@@ -24,28 +25,28 @@ async def go_through_dialog(p):
 
 
 @logger.catch()
-async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
+async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
     # standard zone gate, just teleport
     if zoneAccessType == 'standard':
+        zone = await p.zone_name()
         await p.teleport(XYZ(float(x), float(y), float(z)))
-
-        await p.wait_for_zone_change()
+        
+        await p.wait_for_zone_change(zone)
 
     # dungeon ENTRANCE, teleport, click x, wait for change
     elif zoneAccessType == 'dungeon':
-
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.8)
             await p.send_key(Keycode.X, 0.1)
             await p.send_key(Keycode.X, 0.1)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     # this is a dungeon exit, user may need to confirm to leave the dungeon.  Teleport, click confirm
     elif zoneAccessType == 'dungeonExitConfirm':
@@ -59,8 +60,9 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
             await asyncio.sleep(1)
 
             try:
+                zone = await p.zone_name()
                 await p.mouse_handler.click_window_with_name('centerButton')
-                await p.wait_for_zone_change()
+                await p.wait_for_zone_change(zone)
             except ValueError:
                 await asyncio.sleep(8)
 
@@ -74,12 +76,12 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'xNoWaitMirageCaterwaulToCaravan':
         if await p.is_in_dialog():
@@ -91,12 +93,12 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'xNoWaitPolaris':
         await p.teleport(XYZ(float(x), float(y), float(z)))
@@ -105,12 +107,12 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
-
-        await p.wait_for_zone_change()
+        
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'xSkipRideKrok1':
         await p.teleport(XYZ(4521.9609375, 3189.564208984375, 25.792266845703125))
@@ -120,71 +122,75 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
-
-        await p.wait_for_zone_change()
+        
+        await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'xSkipRideKrok2':
         await p.teleport(XYZ(11749.1123046875, -189.94265747070312, 1219.797119140625))
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'xNoWaitSkipRideMarleyboneChelsea':
+        zone = await p.zone_name()
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'xNoWaitSkipRideMarleyboneChelseaReturn':
+        zone = await p.zone_name()
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
+        zone = await p.zone_name()
         await asyncio.sleep(.3)
         await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'xNoWaitSkipRideMarleyboneHyde':
+        zone = await p.zone_name()
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
             pass
@@ -198,64 +204,66 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
     elif zoneAccessType == 'xSkipRideMarleyboneIronworksReturn':
         await p.teleport(XYZ(float(x), float(y), float(z)))
         await asyncio.sleep(1)
-
+        zone = await p.zone_name()
         async with p.mouse_handler:
             try:
                 await p.mouse_handler.click_window_with_name('centerButton')
             except ValueError:
                 await asyncio.sleep(0.01)
 
-            await p.wait_for_zone_change()
+            await p.wait_for_zone_change(zone)
 
             while not await p.is_in_npc_range():
                 pass
-
+            zone = await p.zone_name()
             while await p.is_in_npc_range():
                 await asyncio.sleep(.4)
                 await p.send_key(Keycode.X, 0.1)
 
-            await p.wait_for_zone_change()
+            await p.wait_for_zone_change(zone)
 
 
     elif zoneAccessType == 'xNoWaitSkipRideMarleyboneHydeReturn':
+        zone = await p.zone_name()
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'dungeonSkipRideMarleyboneIronworks':
         await asyncio.sleep(1)
-
+        
         await p.teleport(XYZ(float(x), float(y), float(z)))
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
             await p.send_key(Keycode.X, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'xSkipRideMarleyboneIronworksReturn':
+        zone = await p.zone_name()
         await p.send_key(Keycode.PAGE_UP, 0.1)
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
 
     # special case, krokotopia obelisks
@@ -306,26 +314,26 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
         logger.info("Waiting a long time for the mouth thing to open")
         await asyncio.sleep(20)
         logger.info("If you haven't changed zones by now, manually turn on the obelisks and walk to the zone gate.  The script should continue after you change zones")
-
+        zone = await p.zone_name()
         # Zone Change - Tomb of Storms
         # Teleport to front of mouth thing
         await p.teleport(XYZ(-3364.827392578125, -1802.46630859375, -35.354522705078125))
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'dungeonDragonSpireGrandChasm':
         await asyncio.sleep(1)
         await p.send_key(Keycode.PAGE_DOWN, 0.1)
-
+        zone = await p.zone_name()
         await p.teleport(XYZ(float(x), float(y), float(z)))
-
+        
         await asyncio.sleep(.5)
         await p.send_key(Keycode.X, 0.1)
         await p.send_key(Keycode.X, 0.1)
         await p.send_key(Keycode.X, 0.1)
         await p.send_key(Keycode.X, 0.1)
         await p.send_key(Keycode.X, 0.1)
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
         await asyncio.sleep(.3)
 
@@ -343,10 +351,11 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
         await asyncio.sleep(1)
 
     elif zoneAccessType == 'dungeonExitConfirmMana':
+        zone = await p.zone_name()
         await p.send_key(Keycode.PAGE_UP, 0.1)
         await p.send_key(Keycode.PAGE_UP, 0.1)
         await p.send_key(Keycode.PAGE_UP, 0.1)
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
 
     elif zoneAccessType == 'xSkipRideDragonspireRoost':
@@ -356,12 +365,12 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await p.send_key(Keycode.X, 0.1)
             await asyncio.sleep(.4)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
         await p.send_key(Keycode.SPACEBAR, 0.1)
         await p.send_key(Keycode.SPACEBAR, 0.1)
@@ -373,12 +382,12 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await p.send_key(Keycode.X, 0.1)
             await asyncio.sleep(.4)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
         await p.send_key(Keycode.SPACEBAR, 0.1)
         await p.send_key(Keycode.SPACEBAR, 0.1)
@@ -391,9 +400,10 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
         await asyncio.sleep(1)
 
     elif zoneAccessType == 'xNoWaitDragonSpireReturnToAcademy':
+        zone = await p.zone_name()
         await p.send_key(Keycode.PAGE_UP, 0.1)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'dungeonExitConfirmCelestiaTemple':
 
@@ -410,7 +420,7 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
         await asyncio.sleep(1)
 
         await p.teleport(XYZ(float(x), float(y), float(z)))
-
+        zone = await p.zone_name()
         async with p.mouse_handler:
             await asyncio.sleep(1)
 
@@ -421,7 +431,7 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
 
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
     elif zoneAccessType == 'khrysDungeon1':
         await p.teleport(XYZ(float(x), float(y), float(z)))
@@ -430,21 +440,23 @@ async def gateTypeDifferentiation(x, y, z, p, zoneAccessType):
 
         while not await p.is_in_npc_range():
             pass
-
+        zone = await p.zone_name()
         while await p.is_in_npc_range():
             await p.send_key(Keycode.X, 0.1)
             await asyncio.sleep(.4)
 
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
         # teleport to second zone door
+        zone = await p.zone_name()
         await p.teleport(XYZ(1647.79248046875, 29.44374656677246, 6.103515625e-05))
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
         await asyncio.sleep(2)
 
 
     elif zoneAccessType == 'khrysSerpentIsland':
+        zone = await p.zone_name()
         await p.teleport(XYZ(float(x), float(y), float(z)))
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
         await asyncio.sleep(2)
 
         await p.teleport(XYZ(1647.79248046875, 29.44374656677246, 6.103515625e-05))
@@ -490,8 +502,9 @@ async def interactiveTeleportToZone(p, menuButtonNumber):
 
         await p.mouse_handler.click_window_with_name('opt' + str(actualButtonToClick - 1))
         await asyncio.sleep(.4)
+        zone = await p.zone_name()
         await p.mouse_handler.click_window_with_name('teleportButton')
-        await p.wait_for_zone_change()
+        await p.wait_for_zone_change(zone)
 
 
 
@@ -615,8 +628,9 @@ async def goToNewWorld(p, destinationWorld):
                     if name == spiralGateName:
                         await p.mouse_handler.click_window_with_name(zoneDoorOptions[worldIndex])
                         await asyncio.sleep(.4)
+                        zone = await p.zone_name()
                         await p.mouse_handler.click_window_with_name('teleportButton')
-                        await p.wait_for_zone_change()
+                        await p.wait_for_zone_change(zone)
 
                         # move away from the spiral door so we dont accidentally click on it again after teleporting later
                         await p.send_key(Keycode.W, 1.5)
@@ -1051,11 +1065,13 @@ async def refillPotions(clients):
     for client in clients:
         async with client.mouse_handler:
             await client.goto(-0.5264079570770264, -3021.25244140625)
+            zone = await client.zone_name()
             await client.send_key(Keycode.W, 0.5)
-            await client.wait_for_zone_change()
+            await client.wait_for_zone_change(zone)
             await client.goto(11.836355209350586, -1816.455078125)
+            zone = await client.zone_name()
             await client.send_key(Keycode.W, 0.5)
-            await client.wait_for_zone_change()
+            await client.wait_for_zone_change(zone)
             await client.goto(-587.87927246093752, 404.43939208984375)
             await asyncio.sleep(1)
             await client.goto(-3965.254638671875, 1535.5472412109375)
@@ -1077,8 +1093,9 @@ async def refillPotions(clients):
                 break
 
             # Return
+            zone = await client.zone_name()
             await client.send_key(Keycode.PAGE_UP, 0.1)
-            await client.wait_for_zone_change()
+            await client.wait_for_zone_change(zone)
 
 
 @logger.catch()
