@@ -616,9 +616,7 @@ async def goToNewWorld(p: Client, destinationWorld):
                 currentPage = pageCount.split('/', 1)[0]
 
     worldIndex = worldList.index(destinationWorld)
-    print(worldIndex)
     spiralGateName = zoneDoorNameList[worldIndex]
-    print(spiralGateName)
 
     isChildFound = False
 
@@ -716,6 +714,12 @@ async def goToDestination(p, destinationZone, p1WorldName, bigStackDestinations,
 
     if "Aquila" in destinationWorld:
         destinationWorld = "WizardCity"
+    
+    if currentWorld != destinationWorld and await p.zone_name() == "Novus/NV_Z06_NucleusGallery":
+        while currentZone not in worldHubsList:
+            await p.send_key(Keycode.END)
+            await asyncio.sleep(.6)
+            currentZone = await p.zone_name()
 
     # user may not be in the correct world.  Find the nearest spiral door and teleport to the correct world
     if currentWorld != destinationWorld:
@@ -733,13 +737,14 @@ async def goToDestination(p, destinationZone, p1WorldName, bigStackDestinations,
             if split[0] == 'ZONEDOOR':
                 zoneDoor = split
                 zoneContainingZoneDoor = split[4]
-
             uniqueObjectIterator += 1
 
         currentWorldStackDestinations = await createStack(currentWorld)
 
         # traverse to the first zone in the world (or wherever the zone door is located)
         logger.info(f'Returning to Spiral Door in: {zoneContainingZoneDoor}')
+        currentZone = await p.zone_name()
+        
         await goToDestination(p, zoneContainingZoneDoor, currentWorld, currentWorldStackDestinations, interactiveTeleportersOriginal)
 
         # teleport to the zone door
@@ -769,8 +774,7 @@ async def goToDestination(p, destinationZone, p1WorldName, bigStackDestinations,
             # these have to be hardcoded
             # if a player recalls to a dungeon, then attempts to return to the hub, they go through two zone changes: once to the hub, second back to the zone they were in before recalling
             # this makes it impossible to account for zone changes without having ridiculously long sleeps or hardcoded zone names
-            worldHubsList = ["WizardCity/WC_Hub",'WizardCity/WC_Ravenwood_Teleporter', 'WizardCity/WC_Ravenwood', 'Krokotopia/KT_WorldTeleporter', 'Krokotopia/KT_Hub', 'Marleybone/Interiors/MB_WolfminsterAbbey', 'Marleybone/MB_Hub', 'DragonSpire/DS_Hub_Cathedral', 'MooShu/Interiors/MS_Teleport_Chamber', 'MooShu/MS_Hub', 'Celestia/CL_Hub', 'Wysteria/PA_Hub', 'Grizzleheim/GH_MainHub', 'Zafaria/ZF_Z00_Hub', 'Avalon/AV_Z00_Hub', 'Azteca/AZ_Z00_Zocalo', 'Khrysalis/KR_Z00_Hub', 'Polaris/PL_Z00_Walruskberg', 'Mirage/MR_Z00_Hub', 'Karamelle/KM_Z00_HUB', 'Empyrea/EM_Z00_Aeriel_HUB', 'Lemuria/LM_Z00_Hub', "Novus/NV_Z01_Conatus"]
-
+            
             currentZone = await p.zone_name()
             while currentZone not in worldHubsList:
                 await p.send_key(Keycode.END)
@@ -1059,6 +1063,7 @@ potion_ui_buy = [
 ]
 
 
+worldHubsList = ["WizardCity/WC_Hub",'WizardCity/WC_Ravenwood_Teleporter', 'WizardCity/WC_Ravenwood', 'Krokotopia/KT_WorldTeleporter', 'Krokotopia/KT_Hub', 'Marleybone/Interiors/MB_WolfminsterAbbey', 'Marleybone/MB_Hub', 'DragonSpire/DS_Hub_Cathedral', 'MooShu/Interiors/MS_Teleport_Chamber', 'MooShu/MS_Hub', 'Celestia/CL_Hub', 'Wysteria/PA_Hub', 'Grizzleheim/GH_MainHub', 'Zafaria/ZF_Z00_Hub', 'Avalon/AV_Z00_Hub', 'Azteca/AZ_Z00_Zocalo', 'Khrysalis/KR_Z00_Hub', 'Polaris/PL_Z00_Walruskberg', 'Mirage/MR_Z00_Hub', 'Karamelle/KM_Z00_HUB', 'Empyrea/EM_Z00_Aeriel_HUB', 'Lemuria/LM_Z00_Hub', "Novus/NV_Z01_Conatus"]
 
 # Credit to Notfaj and Slackaduts for the majority of this function from UniversalBotSF
 @logger.catch()
@@ -1121,6 +1126,8 @@ async def main(clientHandler):
     try:
         # await toZoneDisplayName(clients, 'golem court')
         await toZone(clients, "Novus/NV_Z06_NucleusGallery")
+        # await toZone(clients, "DragonSpire/DS_A1_Knowledge/DS_A1Z3_GrandChasm")
+        
     finally:
         logger.info('Script complete')
 
