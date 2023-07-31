@@ -474,7 +474,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
 
 # uses an interactive teleporter (such as those in empyrea and later worlds) to teleport between zones
 @logger.catch()
-async def interactiveTeleportToZone(p, menuButtonNumber):
+async def interactiveTeleportToZone(p: Client, menuButtonNumber):
 
     while not await p.is_in_npc_range():
         pass
@@ -576,7 +576,7 @@ async def read_control_checkbox_text(checkbox: Window) -> str:
 
 @logger.catch()
 # trace back to the nearest spiral door and teleport to destinationWorld
-async def goToNewWorld(p, destinationWorld):
+async def goToNewWorld(p: Client, destinationWorld):
     while not await p.is_in_npc_range():
         pass
 
@@ -584,59 +584,62 @@ async def goToNewWorld(p, destinationWorld):
         await p.send_key(Keycode.X, 0.1)
         await asyncio.sleep(.4)
 
-    
-    async with p.mouse_handler:
-        # each worldList item (in-file name for a world) correlates to a zoneDoorOptions (in-file name for the buttons in the spiral door)
-        worldList = ["WizardCity", "Krokotopia", "Marleybone", "MooShu", "DragonSpire", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria"]
-        zoneDoorOptions = ["wbtnWizardCity", "wbtnKrokotopia", "wbtnMarleybone", "wbtnMooShu", "wbtnDragonSpire", "wbtnGrizzleheim", "wbtnCelestia", "wbtnWysteria", "wbtnZafaria", "wbtnAvalon", "wbtnAzteca", "wbtnKhrysalis", "wbtnPolaris", "wbtnArcanum", "wbtnMirage", "wbtnEmpyrea", "wbtnKaramelle", "wbtnLemuria"]
-        zoneDoorNameList = ["Wizard City", "Krokotopia", "Marleybone", "MooShu", "Dragonspyre", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria"]
+    # each worldList item (in-file name for a world) correlates to a zoneDoorOptions (in-file name for the buttons in the spiral door)
+    worldList = ["WizardCity", "Krokotopia", "Marleybone", "MooShu", "DragonSpire", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria", "Novus"]
+    zoneDoorOptions = ["wbtnWizardCity", "wbtnKrokotopia", "wbtnMarleybone", "wbtnMooShu", "wbtnDragonSpire", "wbtnGrizzleheim", "wbtnCelestia", "wbtnWysteria", "wbtnZafaria", "wbtnAvalon", "wbtnAzteca", "wbtnKhrysalis", "wbtnPolaris", "wbtnArcanum", "wbtnMirage", "wbtnEmpyrea", "wbtnKaramelle", "wbtnLemuria", "wbtnNovus"]
+    zoneDoorNameList = ["Wizard City", "Krokotopia", "Marleybone", "MooShu", "Dragonspyre", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria", "Novus"]
 
-        option_window = await p.root_window.get_windows_with_name("optionWindow")
+    option_window = await p.root_window.get_windows_with_name("optionWindow")
 
-        assert len(option_window) == 1, str(option_window)
+    assert len(option_window) == 1, str(option_window)
 
-        # Get page count, current selected page number, and max page number
+    # Get page count, current selected page number, and max page number
+    for child in await option_window[0].children():
+        if await child.name() == 'pageCount':
+            pageCount = await child.maybe_text()
+            pageCount = pageCount[8:-9]
+            currentPage = pageCount.split('/', 1)[0]
+            maxPage = pageCount.split('/', 1)[1]
+            break
+
+    # user could be on any of the three pages when opening the world door depending on what their active quest is
+    # switch all the way to the first page to standardize it
+    # in case wizwalker misclicked / didn't click enough originally when resetting to page 1, ensure we are on page 1 (and if not click over again)
+    while str(currentPage) != '1':
+        async with p.mouse_handler:
+            await p.mouse_handler.click_window_with_name('leftButton')
+        await asyncio.sleep(0.2)
         for child in await option_window[0].children():
             if await child.name() == 'pageCount':
                 pageCount = await child.maybe_text()
                 pageCount = pageCount[8:-9]
                 currentPage = pageCount.split('/', 1)[0]
-                maxPage = pageCount.split('/', 1)[1]
-                break
 
-        # user could be on any of the three pages when opening the world door depending on what their active quest is
-        # switch all the way to the first page to standardize it
-        # in case wizwalker misclicked / didn't click enough originally when resetting to page 1, ensure we are on page 1 (and if not click over again)
-        while str(currentPage) != '1':
-            await p.mouse_handler.click_window_with_name('leftButton')
-            await asyncio.sleep(0.2)
-            for child in await option_window[0].children():
-                if await child.name() == 'pageCount':
-                    pageCount = await child.maybe_text()
-                    pageCount = pageCount[8:-9]
-                    currentPage = pageCount.split('/', 1)[0]
+    worldIndex = worldList.index(destinationWorld)
+    print(worldIndex)
+    spiralGateName = zoneDoorNameList[worldIndex]
+    print(spiralGateName)
 
-        worldIndex = worldList.index(destinationWorld)
-        spiralGateName = zoneDoorNameList[worldIndex]
+    isChildFound = False
 
-        isChildFound = False
-
-        for i in range(int(maxPage)):
-            for child in await option_window[0].children():
-                if await child.name() in ['opt0', 'opt1', 'opt2', 'opt3']:
-                    name = await read_control_checkbox_text(child)
-                    if name == spiralGateName:
+    for i in range(int(maxPage)):
+        for child in await option_window[0].children():
+            if await child.name() in ['opt0', 'opt1', 'opt2', 'opt3']:
+                name = await read_control_checkbox_text(child)
+                if name == spiralGateName:
+                    async with p.mouse_handler:
                         await p.mouse_handler.click_window_with_name(zoneDoorOptions[worldIndex])
-                        await asyncio.sleep(.4)
-                        zone = await p.zone_name()
+                    await asyncio.sleep(.4)
+                    zone = await p.zone_name()
+                    async with p.mouse_handler:
                         await p.mouse_handler.click_window_with_name('teleportButton')
-                        await p.wait_for_zone_change(zone)
+                    await p.wait_for_zone_change(zone)
 
-                        # move away from the spiral door so we dont accidentally click on it again after teleporting later
-                        await p.send_key(Keycode.W, 1.5)
+                    # move away from the spiral door so we dont accidentally click on it again after teleporting later
+                    await p.send_key(Keycode.W, 1.5)
 
-                        isChildFound = True
-                        break
+                    isChildFound = True
+                    break
 
         # correct world was not found - check the next page
         if not isChildFound:
@@ -644,7 +647,8 @@ async def goToNewWorld(p, destinationWorld):
             loopCount = 0
             while currentPage == previousPage and loopCount < 30:
                 loopCount += 1
-                await p.mouse_handler.click_window_with_name('rightButton')
+                async with p.mouse_handler:
+                    await p.mouse_handler.click_window_with_name('rightButton')
 
                 # ensure that wizwalker didn't misclick and that we actually changed pages
                 for child in await option_window[0].children():
