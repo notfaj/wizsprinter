@@ -268,6 +268,7 @@ ZONEDOOR;Empyrea/EM_Z00_Aeriel_HUB
 	Empyrea/EM_Z00_Aeriel_HUB;Empyrea/EM_Z06_NimbusHanger
 		Empyrea/EM_Z06_NimbusHanger;Empyrea/EM_Z07_NimbusCitadel
 			Empyrea/EM_Z07_NimbusCitadel;Empyrea/Interiors/EM_Z07_MilitaryStronghold
+			Empyrea/EM_Z07_NimbusCitadel;Empyrea/Interiors/EM_Z07_SecondaryDock
 	Empyrea/EM_Z00_Aeriel_HUB;Empyrea/EM_Z10_PortAero
 		Empyrea/EM_Z10_PortAero;Empyrea/EM_Z08_SWAeroplains
 END
