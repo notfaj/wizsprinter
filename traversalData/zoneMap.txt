@@ -286,6 +286,7 @@ ZONEDOOR;Karamelle/KM_Z00_HUB
 END
 WORLD - Lemuria
 ZONEDOOR;Lemuria/LM_Z00_Hub
+	Lemuria/LM_Z00_Hub;Lemuria/Interiors/LM_Z00_I09_OldOnesComplex
 	Lemuria/LM_Z00_Hub;Lemuria/LM_Z01_WildLands
 	Lemuria/LM_Z00_Hub;Lemuria/LM_Z02_UrsaiVillage
 	Lemuria/LM_Z00_Hub;Lemuria/LM_Z03_NightForest

@@ -191,7 +191,7 @@ standard;-863.9229736328125;8056.57470703125;400.0;DragonSpire/DS_A1_Knowledge/D
 standard;802.5122680664062;-1.9279708862304688;0.0;DragonSpire/DS_A1_Knowledge/Interiors/DS_Library_Shop3;DragonSpire/DS_A1_Knowledge/DS_A1Hub_Library
 standard;6408.8779296875;7130.23681640625;382.9273986816406;DragonSpire/DS_A1_Knowledge/DS_A1Hub_Library;DragonSpire/DS_A1_Knowledge/DS_A1Z1_WizardTower
 standard;-32138.716796875;-13987.1064453125;30.00579833984375;DragonSpire/DS_A1_Knowledge/DS_A1Z1_WizardTower;DragonSpire/DS_A1_Knowledge/DS_A1Hub_Library
-standard;-3647.576904296875;6422.59521484375;662.5936279296875;DragonSpire/DS_A1_Knowledge/DS_A1Hub_Library;DragonSpire/DS_A1_Knowledge/DS_A1Z3_GrandChasm
+standard;-3648.099365234375;6430.0830078125;662.639892578125;DragonSpire/DS_A1_Knowledge/DS_A1Hub_Library;DragonSpire/DS_A1_Knowledge/DS_A1Z3_GrandChasm
 standard;35313.046875;-12002.2900390625;30.00506591796875;DragonSpire/DS_A1_Knowledge/DS_A1Z3_GrandChasm;DragonSpire/DS_A1_Knowledge/DS_A1Hub_Library
 dungeonDragonSpireGrandChasm;17.022016525268555;5880.169921875;30.0029296875;DragonSpire/DS_A1_Knowledge/DS_A1Z3_GrandChasm;DragonSpire/DS_A1_Knowledge/DS_A1Z4_GrandChasm_Past
 dungeonExitConfirmMana;-16.827075958251953;6040.13671875;30.203369140625;DragonSpire/DS_A1_Knowledge/DS_A1Z4_GrandChasm_Past;DragonSpire/DS_A1_Knowledge/DS_A1Z3_GrandChasm
@@ -490,6 +490,7 @@ standard;-8824.12109375;18257.794921875;-843.6356811523438;Karamelle/KM_Z08_Lico
 standard;-1358.4122314453125;3356.394775390625;380.6585998535156;Karamelle/Interiors/KM_Z08_ColaLake;Karamelle/KM_Z08_LicoriceForest
 END
 WORLD - Lemuria
+standard;32.240787506103516;-5615.248046875;-440.6199951171875;Lemuria/LM_Z00_Hub;Lemuria/Interiors/LM_Z00_I09_OldOnesComplex
 standard;-6446.07177734375;-6475.5361328125;-428.2126159667969;Lemuria/LM_Z00_Hub;Lemuria/LM_Z01_WildLands
 standard;6425.80712890625;-7942.82568359375;221.64468383789062;Lemuria/LM_Z01_WildLands;Lemuria/LM_Z00_Hub
 standard;-13.100936889648438;-12211.2783203125;-287.9693908691406;Lemuria/LM_Z00_Hub;Lemuria/Interiors/LM_Z00_I07_HallofHeroesOuter
