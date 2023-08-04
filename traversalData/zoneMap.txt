@@ -303,6 +303,7 @@ ZONEDOOR;Novus/NV_Z01_Conatus
 	Novus/NV_Z01_Conatus;Novus/NV_Z02_StoneOfHeaven
 	Novus/NV_Z01_Conatus;Novus/NV_Z05_LaVilleRose
 	Novus/NV_Z01_Conatus;Novus/NV_Z04_NewVicorgia
+		Novus/NV_Z04_NewVicorgia;Novus/Interiors/NV_Z04_SkyCave
 	Novus/NV_Z01_Conatus;Novus/NV_Z03_PuertoNuovo_VA
 	Novus/NV_Z01_Conatus;Novus/NV_Z06_NucleusGallery
 END
