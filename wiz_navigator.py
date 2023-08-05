@@ -1125,8 +1125,8 @@ async def main(clientHandler):
     
     try:
         # await toZoneDisplayName(clients, 'golem court')
-        await toZone(clients, "Novus/NV_Z06_NucleusGallery")
-        # await toZone(clients, "DragonSpire/DS_A1_Knowledge/DS_A1Z3_GrandChasm")
+        # await toZone(clients, "Novus/NV_Z06_NucleusGallery")
+        await toZone(clients, "Empyrea/EM_Z10_PortAero")
         
     finally:
         logger.info('Script complete')
