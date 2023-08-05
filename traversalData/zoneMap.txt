@@ -284,6 +284,7 @@ ZONEDOOR;Karamelle/KM_Z00_HUB
 	Karamelle/KM_Z00_HUB;Karamelle/KM_Z08_LicoriceForest
 		Karamelle/KM_Z08_LicoriceForest;Karamelle/Interiors/KM_Z08_ColaLake
 	Karamelle/KM_Z00_HUB;Karamelle/KM_Z09_CandyCornFarm
+		Karamelle/KM_Z09_CandyCornFarm;Karamelle/Interiors/KM_Z09_FactoryFarm
 	Karamelle/KM_Z00_HUB;Karamelle/KM_Z10_Gobblerton
 END
 WORLD - Lemuria
