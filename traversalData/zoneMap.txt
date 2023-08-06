@@ -278,6 +278,7 @@ ZONEDOOR;Karamelle/KM_Z00_HUB
 	Karamelle/KM_Z00_HUB;Karamelle/KM_Z01_VonTrapEstate
 		Karamelle/KM_Z01_VonTrapEstate;Karamelle/KM_Z02_CandyMountains
 	Karamelle/KM_Z00_HUB;Karamelle/KM_Z04_Sweetzburg
+		Karamelle/KM_Z04_Sweetzburg;Karamelle/Interiors/KM_Z04_GummyPlant
 	Karamelle/KM_Z00_HUB;Karamelle/KM_Z05_Nibbleheim
 		Karamelle/KM_Z05_Nibbleheim;Karamelle/KM_Z06_Mines
 	Karamelle/KM_Z00_HUB;Karamelle/KM_Z07_Gutenstadt
