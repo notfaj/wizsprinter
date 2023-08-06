@@ -255,6 +255,7 @@ WORLD - Empyrea
 ZONEDOOR;Empyrea/EM_Z00_Aeriel_HUB
 	Empyrea/EM_Z00_Aeriel_HUB;Empyrea/EM_Z01_Jungle
 		Empyrea/EM_Z01_Jungle;Empyrea/Interiors/EM_Z01_MonkeySpiderCave
+		Empyrea/EM_Z01_Jungle;Empyrea/Interiors/EM_Z01_BeastmanStockade
 	Empyrea/EM_Z00_Aeriel_HUB;Empyrea/EM_Z02_Zanadu
 		Empyrea/EM_Z02_Zanadu;Empyrea/Interiors/EM_Z02_Sewers
 	Empyrea/EM_Z00_Aeriel_HUB;Empyrea/EM_Z03_OuterAthanor
