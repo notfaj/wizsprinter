@@ -199,6 +199,7 @@ ZONEDOOR;Azteca/AZ_Z00_Zocalo
 	Azteca/AZ_Z00_Zocalo;Azteca/AZ_Z05_ZultunDock
 		Azteca/AZ_Z05_ZultunDock;Azteca/AZ_Z06_CloudburstIsland
 			Azteca/AZ_Z06_CloudburstIsland;Azteca/AZ_Z07_TierraDeBrea
+				Azteca/AZ_Z07_TierraDeBrea;Azteca/AZ_Z08_PitchBlackLake
 			Azteca/AZ_Z06_CloudburstIsland;Azteca/AZ_Z09_AltoAlto
 				Azteca/AZ_Z09_AltoAlto;Azteca/AZ_Z10_FloatingMountains
 END						
