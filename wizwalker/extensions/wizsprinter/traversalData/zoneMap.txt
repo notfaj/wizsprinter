@@ -19,6 +19,7 @@ END
 WORLD - Krokotopia
 ZONEDOOR;Krokotopia/KT_WorldTeleporter
 	Krokotopia/KT_WorldTeleporter;Krokotopia/KT_Hub
+		Krokotopia/KT_Hub;G14_SB/SB_Z01_KimbaalungVillage
 		Krokotopia/KT_Hub;Krokotopia/Interiors/KT_Shop01
 		Krokotopia/KT_Hub;Krokotopia/Interiors/KT_Shop05
 		Krokotopia/KT_Hub;Krokotopia/Interiors/KT_Shop02

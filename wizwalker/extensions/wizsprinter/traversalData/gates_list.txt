@@ -86,6 +86,8 @@ standard;2733.585205078125;6650.015625;2.239990234375;Krokotopia/KT_Tomb/KT_Well
 standard;-1204.7822265625;-18.404386520385742;10.563751220703125;Krokotopia/KT_Tomb/KT_DjeseritTomb;Krokotopia/KT_Tomb/KT_WellOfSpirits
 standard;-2211.887451171875;4192.20654296875;-494.7909240722656;Krokotopia/KT_Tomb/KT_WellOfSpirits;Krokotopia/KT_Tomb/KT_AhnicTomb
 standard;1284.369384765625;-68.77455139160156;18.12005615234375;Krokotopia/KT_Tomb/KT_AhnicTomb;Krokotopia/KT_Tomb/KT_WellOfSpirits
+xNoWait;-10581.0068359375;1673.0843505859375;3341.5498046875;Krokotopia/KT_Hub;G14_SB/SB_Z01_KimbaalungVillage
+standard;4140.7001953125;-2854.685302734375;-157.12301635742188;G14_SB/SB_Z01_KimbaalungVillage;Krokotopia/KT_Hub
 END
 WORLD - Marleybone
 standard;-4.925940990447998;-3623.677001953125;9.1552734375e-05;Marleybone/Interiors/MB_WolfminsterAbbey;Marleybone/MB_Hub
