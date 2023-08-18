@@ -714,9 +714,9 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
 
     if "Aquila" in destinationWorld:
         destinationWorld = "WizardCity"
-    elif "G14_SB" in destinationWorld:
+    elif "G14_" in destinationWorld:
         destinationWorld = "Krokotopia"
-    
+        
     if currentWorld != destinationWorld:
         if currentZone == "Novus/NV_Z06_NucleusGallery":
             while currentZone not in worldHubsList:
@@ -726,6 +726,12 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
         elif currentZone == "G14_SB/SB_Z01_KimbaalungVillage":
             while currentZone not in worldHubsList:
                 await p.teleport(XYZ(4140.7001953125, -2854.685302734375, -157.12301635742188))
+                await p.wait_for_zone_change(currentZone)
+                currentZone = await p.zone_name()
+                currentWorld = currentZone.split('/', 1)[0]
+        elif currentZone == "G14_HS/HS_Z01_ZigazagUpper":
+            while currentZone not in worldHubsList:
+                await p.teleport(XYZ(10068.5498046875, 4963.89404296875, 65.18057250976562))
                 await p.wait_for_zone_change(currentZone)
                 currentZone = await p.zone_name()
                 currentWorld = currentZone.split('/', 1)[0]
@@ -1135,7 +1141,7 @@ async def main(clientHandler):
     
     try:
         # await toZoneDisplayName(clients, 'golem court')
-        await toZone(clients, "Novus/Interiors/NV_Z04_SkyCave")
+        await toZone(clients, "Azteca/AZ_Z08_PitchBlackLake")
         # await toZone(clients, "Empyrea/EM_Z10_PortAero")
         
     finally:

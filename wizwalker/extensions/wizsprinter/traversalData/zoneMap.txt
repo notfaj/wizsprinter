@@ -33,6 +33,7 @@ ZONEDOOR;Krokotopia/KT_WorldTeleporter
 			Krokotopia/KT_Pyramid/KT_AltarOfKings;Krokotopia/KT_Pyramid/KT_PalaceOfFire
 		Krokotopia/KT_Hub;Krokotopia/KT_Hub_Sphinx
 			Krokotopia/KT_Hub_Sphinx;Krokotopia/Interiors/KT_School
+				Krokotopia/Interiors/KT_School;G14_HS/HS_Z01_ZigazagUpper
 			Krokotopia/KT_Hub_Sphinx;Krokotopia/Interiors/KT_ShopSphinx
 			Krokotopia/KT_Hub_Sphinx;Krokotopia/KT_Krokosphinx/KT_EntranceHall
 				Krokotopia/KT_Krokosphinx/KT_EntranceHall;Krokotopia/KT_Krokosphinx/KT_Vault
