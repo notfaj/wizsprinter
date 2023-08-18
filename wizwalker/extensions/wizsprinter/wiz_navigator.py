@@ -703,7 +703,7 @@ async def parseFile(fileName, worldName):
 
 @logger.catch()
 # from any zone in any world (excluding certain ones, such as aquila), travel to a destination zone
-async def goToDestination(p, destinationZone, p1WorldName, bigStackDestinations, interactiveTeleportersOriginal):
+async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDestinations, interactiveTeleportersOriginal):
 
     currentZone = await p.zone_name()
     currentWorld = currentZone.split('/', 1)[0]
@@ -714,13 +714,23 @@ async def goToDestination(p, destinationZone, p1WorldName, bigStackDestinations,
 
     if "Aquila" in destinationWorld:
         destinationWorld = "WizardCity"
+    elif "G14_SB" in destinationWorld:
+        destinationWorld = "Krokotopia"
     
-    if currentWorld != destinationWorld and await p.zone_name() == "Novus/NV_Z06_NucleusGallery":
-        while currentZone not in worldHubsList:
-            await p.send_key(Keycode.END)
-            await asyncio.sleep(.6)
-            currentZone = await p.zone_name()
+    if currentWorld != destinationWorld:
+        if currentZone == "Novus/NV_Z06_NucleusGallery":
+            while currentZone not in worldHubsList:
+                await p.send_key(Keycode.END)
+                await asyncio.sleep(.6)
+                currentZone = await p.zone_name()
+        elif currentZone == "G14_SB/SB_Z01_KimbaalungVillage":
+            while currentZone not in worldHubsList:
+                await p.teleport(XYZ(4140.7001953125, -2854.685302734375, -157.12301635742188))
+                await p.wait_for_zone_change(currentZone)
+                currentZone = await p.zone_name()
+                currentWorld = currentZone.split('/', 1)[0]
 
+        
     # user may not be in the correct world.  Find the nearest spiral door and teleport to the correct world
     if currentWorld != destinationWorld:
         p1ZoneNameNew = await p.zone_name()
