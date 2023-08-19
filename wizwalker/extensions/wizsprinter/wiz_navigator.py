@@ -701,6 +701,31 @@ async def parseFile(fileName, worldName):
     return lines
 
 
+async def hardcoded_weird_zones(client: Client, currentZone: str, currentWorld: str, destinationWorld: str):
+    if currentWorld != destinationWorld:
+        if currentZone == "Novus/NV_Z06_NucleusGallery":
+            while currentZone not in worldHubsList:
+                await client.send_key(Keycode.END)
+                await asyncio.sleep(.6)
+                currentZone = await client.zone_name()
+                currentWorld = currentZone.split('/', 1)[0]
+            return currentZone, currentWorld
+        elif currentZone == "G14_SB/SB_Z01_KimbaalungVillage":
+            while currentZone not in worldHubsList:
+                await client.teleport(XYZ(4140.7001953125, -2854.685302734375, -157.12301635742188))
+                await client.wait_for_zone_change(currentZone)
+                currentZone = await client.zone_name()
+                currentWorld = currentZone.split('/', 1)[0]
+            return currentZone, currentWorld
+        elif currentZone == "G14_HS/HS_Z01_ZigazagUpper":
+            while currentZone not in worldHubsList:
+                await client.teleport(XYZ(10068.5498046875, 4963.89404296875, 65.18057250976562))
+                await client.wait_for_zone_change(currentZone)
+                currentZone = await client.zone_name()
+                currentWorld = currentZone.split('/', 1)[0]
+            return currentZone, currentWorld
+    return currentZone, currentWorld
+
 @logger.catch()
 # from any zone in any world (excluding certain ones, such as aquila), travel to a destination zone
 async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDestinations, interactiveTeleportersOriginal):
@@ -716,37 +741,14 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
         currentWorld = "WizardCity"
     elif "G14_" in destinationWorld:
         currentWorld = "Krokotopia"
-
+    
+    currentZone, currentWorld = hardcoded_weird_zones(p, currentZone, currentWorld, destinationWorld)
     # user may not be in the correct world.  Find the nearest spiral door and teleport to the correct world
     if currentWorld != destinationWorld:
         p1ZoneNameNew = await p.zone_name()
         p1WorldNameNew = p1ZoneNameNew.split('/', 1)[0]
 
-        if p1ZoneNameNew == "Novus/NV_Z06_NucleusGallery":
-            while p1ZoneNameNew not in worldHubsList:
-                await p.send_key(Keycode.END)
-                await p.wait_for_zone_change(p1ZoneNameNew)
-                p1ZoneNameNew = await p.zone_name()
-                p1WorldNameNew = p1ZoneNameNew.split('/', 1)[0]
-        elif "G14_SB" in p1ZoneNameNew:
-            if not p1ZoneNameNew == "G14_SB/SB_Z01_KimbaalungVillage":
-                await p.send_key(Keycode.END)
-                await p.wait_for_zone_change(p1ZoneNameNew)
-            while p1ZoneNameNew not in worldHubsList:
-                await p.teleport(XYZ(4140.7001953125, -2854.685302734375, -157.12301635742188))
-                await p.wait_for_zone_change(p1ZoneNameNew)
-                p1ZoneNameNew = await p.zone_name()
-                p1WorldNameNew = p1ZoneNameNew.split('/', 1)[0]
-        elif "G14_HS" in p1ZoneNameNew:
-            if not p1ZoneNameNew == "G14_HS/HS_Z01_ZigazagUpper":
-                await p.send_key(Keycode.END)
-                await p.wait_for_zone_change(p1ZoneNameNew)
-            while p1ZoneNameNew not in worldHubsList:
-                await p.teleport(XYZ(10068.5498046875, 4963.89404296875, 65.18057250976562))
-                await p.wait_for_zone_change(p1ZoneNameNew)
-                p1ZoneNameNew = await p.zone_name()
-                p1WorldNameNew = p1ZoneNameNew.split('/', 1)[0]
-        
+        p1ZoneNameNew, p1WorldNameNew = hardcoded_weird_zones(p, p1ZoneNameNew, p1WorldNameNew, destinationWorld)
         # read list of unique locations, such as NPC locations and spiral door coordinates
         currentWorldObjectLocationsOriginal = await parseFile("traversalData/uniqueObjectLocations.txt", p1WorldNameNew)
 
