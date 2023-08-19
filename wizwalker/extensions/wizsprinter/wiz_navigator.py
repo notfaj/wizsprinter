@@ -710,14 +710,20 @@ async def hardcoded_weird_zones(client: Client, currentZone: str, currentWorld: 
                 currentZone = await client.zone_name()
                 currentWorld = currentZone.split('/', 1)[0]
             return currentZone, currentWorld
-        elif currentZone == "G14_SB/SB_Z01_KimbaalungVillage":
+        elif "G14_SB" in currentZone:
+            if not currentZone == "G14_SB/SB_Z01_KimbaalungVillage":
+                await client.send_key(Keycode.END)
+                await client.wait_for_zone_change(currentZone)
             while currentZone not in worldHubsList:
                 await client.teleport(XYZ(4140.7001953125, -2854.685302734375, -157.12301635742188))
                 await client.wait_for_zone_change(currentZone)
                 currentZone = await client.zone_name()
                 currentWorld = currentZone.split('/', 1)[0]
             return currentZone, currentWorld
-        elif currentZone == "G14_HS/HS_Z01_ZigazagUpper":
+        elif "G14_HS" in currentZone:
+            if not currentZone == "G14_HS/HS_Z01_ZigazagUpper":
+                await client.send_key(Keycode.END)
+                await client.wait_for_zone_change(currentZone)
             while currentZone not in worldHubsList:
                 await client.teleport(XYZ(10068.5498046875, 4963.89404296875, 65.18057250976562))
                 await client.wait_for_zone_change(currentZone)
