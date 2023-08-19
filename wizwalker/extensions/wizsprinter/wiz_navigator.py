@@ -744,10 +744,10 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
     pathToDestinationStack = []
 
     if "Aquila" in destinationWorld:
-        currentWorld = "WizardCity"
+        destinationWorld = "WizardCity"
     elif "G14_" in destinationWorld:
-        currentWorld = "Krokotopia"
-    
+        destinationWorld = "Krokotopia"
+
     currentZone, currentWorld = await hardcoded_weird_zones(p, currentZone, currentWorld, destinationWorld)
     # user may not be in the correct world.  Find the nearest spiral door and teleport to the correct world
     if currentWorld != destinationWorld:
@@ -1154,7 +1154,7 @@ async def main(clientHandler):
     
     try:
         # await toZoneDisplayName(clients, 'golem court')
-        await toZone(clients, "Azteca/AZ_Z08_PitchBlackLake")
+        await toZone(clients, "G14_HS/HS_Z01_ZigazagUpper")
         # await toZone(clients, "Empyrea/EM_Z10_PortAero")
         
     finally:
