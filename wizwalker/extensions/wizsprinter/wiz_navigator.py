@@ -742,13 +742,13 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
     elif "G14_" in destinationWorld:
         currentWorld = "Krokotopia"
     
-    currentZone, currentWorld = hardcoded_weird_zones(p, currentZone, currentWorld, destinationWorld)
+    currentZone, currentWorld = await hardcoded_weird_zones(p, currentZone, currentWorld, destinationWorld)
     # user may not be in the correct world.  Find the nearest spiral door and teleport to the correct world
     if currentWorld != destinationWorld:
         p1ZoneNameNew = await p.zone_name()
         p1WorldNameNew = p1ZoneNameNew.split('/', 1)[0]
 
-        p1ZoneNameNew, p1WorldNameNew = hardcoded_weird_zones(p, p1ZoneNameNew, p1WorldNameNew, destinationWorld)
+        p1ZoneNameNew, p1WorldNameNew = await hardcoded_weird_zones(p, p1ZoneNameNew, p1WorldNameNew, destinationWorld)
         # read list of unique locations, such as NPC locations and spiral door coordinates
         currentWorldObjectLocationsOriginal = await parseFile("traversalData/uniqueObjectLocations.txt", p1WorldNameNew)
 
