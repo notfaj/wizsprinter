@@ -712,16 +712,15 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
     pathToCurrentZoneStack = []
     pathToDestinationStack = []
 
+    if "Aquila" in destinationWorld:
+        currentWorld = "WizardCity"
+    elif "G14_" in destinationWorld:
+        currentWorld = "Krokotopia"
 
     # user may not be in the correct world.  Find the nearest spiral door and teleport to the correct world
     if currentWorld != destinationWorld:
         p1ZoneNameNew = await p.zone_name()
         p1WorldNameNew = p1ZoneNameNew.split('/', 1)[0]
-
-        if "Aquila" in destinationWorld:
-            p1WorldNameNew = "WizardCity"
-        elif "G14_" in destinationWorld:
-            p1WorldNameNew = "Krokotopia"
 
         if p1ZoneNameNew == "Novus/NV_Z06_NucleusGallery":
             while p1ZoneNameNew not in worldHubsList:
