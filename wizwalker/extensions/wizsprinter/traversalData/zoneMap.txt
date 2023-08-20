@@ -4,6 +4,7 @@ ZONEDOOR;WizardCity/WC_Ravenwood_Teleporter
 		WizardCity/WC_Ravenwood;WizardCity/WC_Hub
 			WizardCity/WC_Hub;WizardCity/WC_Streets/Interiors/WC_PET_Park
 			WizardCity/WC_Hub;WizardCity/WC_Golem_Tower
+			WizardCity/WC_Hub;WizardCity/WC_NightSide
 				WizardCity/WC_Golem_Tower;WizardCity/WC_Streets/WC_Golem_Tower/WC_Golem_Tower_1
 			WizardCity/WC_Hub;WizardCity/WC_Streets/WC_Unicorn
 				WizardCity/WC_Streets/WC_Unicorn;WizardCity/WC_Duel_Arena
@@ -14,7 +15,7 @@ ZONEDOOR;WizardCity/WC_Ravenwood_Teleporter
 					WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Streets/WC_Cyclops
 						WizardCity/WC_Streets/WC_Cyclops;Aquila/AQ_Z00_Hub
 					WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Streets/WC_Triton
-					WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Streets/WC_Firecat
+					WizardCity/WC_Streets/WC_OldeTown;WizardCity/WC_Streets/WC_Firecat			
 END
 WORLD - Krokotopia
 ZONEDOOR;Krokotopia/KT_WorldTeleporter
