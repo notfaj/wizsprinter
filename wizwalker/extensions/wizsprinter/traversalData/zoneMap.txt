@@ -1,6 +1,11 @@
 WORLD - WizardCity
 ZONEDOOR;WizardCity/WC_Ravenwood_Teleporter
 	WizardCity/WC_Ravenwood_Teleporter;WizardCity/WC_Ravenwood
+		WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolMyth
+		WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolFire
+		WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolFrost
+		WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolStorm
+		WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolLife
 		WizardCity/WC_Ravenwood;WizardCity/WC_Hub
 				WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_Housing_Dorm_Interior
 			WizardCity/WC_Hub;WizardCity/WC_Streets/Interiors/WC_PET_Park

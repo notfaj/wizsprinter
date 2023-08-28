@@ -32,6 +32,16 @@ standard;2595.07275390625;4972.17822265625;2.512603759765625;WizardCity/WC_Hub;W
 standard;721.7235717773438;-2651.833740234375;124.90545654296875;WizardCity/WC_NightSide;WizardCity/WC_Hub
 standard;-205.10983276367188;-30.570772171020508;0.0;WizardCity/Interiors/WC_Housing_Dorm_Interior;WizardCity/WC_Ravenwood
 standard;1159.941650390625;-1628.2286376953125;82.90597534179688;WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_Housing_Dorm_Interior
+standard;-3538.65478515625;3948.841552734375;1.71417236328125;WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolMyth
+standard;-245.55917358398438;5.977570056915283;0.0;WizardCity/Interiors/WC_SchoolMyth;WizardCity/WC_Ravenwood
+standard;1778.1102294921875;6212.990234375;1.709716796875;WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolFire
+standard;-258.0402526855469;27.966766357421875;0.0;WizardCity/Interiors/WC_SchoolFire;WizardCity/WC_Ravenwood
+standard;3671.44384765625;3690.4326171875;1.71502685546875;WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolFrost
+standard;-253.45204162597656;6.682262897491455;0.965911865234375;WizardCity/Interiors/WC_SchoolFrost;WizardCity/WC_Ravenwood
+standard;2906.353515625;635.7103271484375;1.7139892578125;WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolStorm
+standard;-257.2101745605469;51.80642318725586;0.0;WizardCity/Interiors/WC_SchoolStorm;WizardCity/WC_Ravenwood
+standard;-2863.314697265625;626.0299682617188;1.71514892578125;WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolLife
+standard;-259.8228454589844;0.253756046295166;3.023162841796875;WizardCity/Interiors/WC_SchoolLife;WizardCity/WC_Ravenwood
 END
 WORLD - Krokotopia
 dungeon;4641.568359375;3642.033935546875;0.000579833984375;Krokotopia/KT_Krokosphinx/KT_EntranceHall;Krokotopia/KT_Krokosphinx/KT_Retreat
