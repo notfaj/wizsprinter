@@ -255,6 +255,8 @@ ZONEDOOR;Mirage/MR_Z00_Hub
 		Mirage/MR_Z03_CaterwaulCanyon;Mirage/MR_Z07_ThievesDen
 		Mirage/MR_Z03_CaterwaulCanyon;Mirage/MR_Z09_ZruvanGrotto
 	Mirage/MR_Z00_Hub;Mirage/MR_Z04_RubalWastes
+		Mirage/MR_Z04_RubalWastes;Mirage/MR_Z10_Chronoverge
+			Mirage/MR_Z10_Chronoverge;Mirage/Interiors/MR_Z10_SandsofTime
 	Mirage/MR_Z00_Hub;Mirage/MR_Z05_Istanboa
 	Mirage/MR_Z00_Hub;Mirage/MR_Z06_YakhalMountain
 		Mirage/MR_Z06_YakhalMountain;Mirage/Interiors/MR_Z06_PrincessHovel
