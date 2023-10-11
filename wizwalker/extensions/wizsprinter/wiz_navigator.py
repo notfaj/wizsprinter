@@ -580,7 +580,7 @@ async def goToNewWorld(p: Client, destinationWorld):
     while not await p.is_in_npc_range():
         pass
 
-    while await p.is_in_npc_range():
+    if await p.is_in_npc_range():
         await p.send_key(Keycode.X, 0.1)
         await asyncio.sleep(.4)
 
@@ -588,10 +588,14 @@ async def goToNewWorld(p: Client, destinationWorld):
     worldList = ["WizardCity", "Krokotopia", "Marleybone", "MooShu", "DragonSpire", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria", "Novus"]
     zoneDoorOptions = ["wbtnWizardCity", "wbtnKrokotopia", "wbtnMarleybone", "wbtnMooShu", "wbtnDragonSpire", "wbtnGrizzleheim", "wbtnCelestia", "wbtnWysteria", "wbtnZafaria", "wbtnAvalon", "wbtnAzteca", "wbtnKhrysalis", "wbtnPolaris", "wbtnArcanum", "wbtnMirage", "wbtnEmpyrea", "wbtnKaramelle", "wbtnLemuria", "wbtnNovus"]
     zoneDoorNameList = ["Wizard City", "Krokotopia", "Marleybone", "MooShu", "Dragonspyre", "Grizzleheim", "Celestia", "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea", "Karamelle", "Lemuria", "Novus"]
-
+    
+    await asyncio.sleep(1)
     option_window = await p.root_window.get_windows_with_name("optionWindow")
 
-    assert len(option_window) == 1, str(option_window)
+    # assert len(option_window) == 1, str(option_window)
+    if not len(option_window) == 1:
+        print("option window is not 1")
+        return
 
     # Get page count, current selected page number, and max page number
     for child in await option_window[0].children():
