@@ -1158,7 +1158,7 @@ async def main(clientHandler):
     
     try:
         # await toZoneDisplayName(clients, 'golem court')
-        await toZone(clients, "G14_HS/HS_Z01_ZigazagUpper")
+        await toZone(clients, "WizardCity/Interiors/WC_Headmistress_House")
         # await toZone(clients, "Empyrea/EM_Z10_PortAero")
         
     finally:

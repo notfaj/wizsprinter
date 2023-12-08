@@ -42,6 +42,8 @@ standard;2906.353515625;635.7103271484375;1.7139892578125;WizardCity/WC_Ravenwoo
 standard;-257.2101745605469;51.80642318725586;0.0;WizardCity/Interiors/WC_SchoolStorm;WizardCity/WC_Ravenwood
 standard;-2863.314697265625;626.0299682617188;1.71514892578125;WizardCity/WC_Ravenwood;WizardCity/Interiors/WC_SchoolLife
 standard;-259.8228454589844;0.253756046295166;3.023162841796875;WizardCity/Interiors/WC_SchoolLife;WizardCity/WC_Ravenwood
+standard;-968.939208984375;-2452.595458984375;124.86614990234375;WizardCity/WC_Hub;WizardCity/Interiors/WC_Headmistress_House
+standard;-4.06998872756958;-746.7249755859375;-3.0517578125e-05;WizardCity/Interiors/WC_Headmistress_House;WizardCity/WC_Hub
 END
 WORLD - Krokotopia
 dungeon;4641.568359375;3642.033935546875;0.000579833984375;Krokotopia/KT_Krokosphinx/KT_EntranceHall;Krokotopia/KT_Krokosphinx/KT_Retreat
