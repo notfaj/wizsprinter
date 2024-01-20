@@ -323,3 +323,6 @@ ZONEDOOR;Novus/NV_Z01_Conatus
 	Novus/NV_Z01_Conatus;Novus/NV_Z03_PuertoNuovo_VA
 	Novus/NV_Z01_Conatus;Novus/NV_Z06_NucleusGallery
 END
+WORLD - Wallaru
+ZONEDOOR;Wallaru/WL_Z01_Hub
+END
