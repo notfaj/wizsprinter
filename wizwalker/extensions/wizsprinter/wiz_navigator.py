@@ -14,7 +14,13 @@ from wizwalker import Client
 handleQuestCollection = True
 is_tab = '\t'.__eq__
 
-cur_path = os.path.dirname(__file__)
+if getattr(sys, 'frozen', False):
+    # If the application is run as a bundle, the PyInstaller bootloader
+    # extends the sys module by a flag frozen=True and sets the app 
+    # path into variable _MEIPASS'.
+    cur_path = sys._MEIPASS
+else:
+    cur_path = os.path.dirname(os.path.abspath(__file__))
 
 @logger.catch()
 async def go_through_dialog(p):
