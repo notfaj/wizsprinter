@@ -19,6 +19,7 @@ cur_path = os.path.dirname(__file__)
 @logger.catch()
 async def go_through_dialog(p):
     while await p.is_in_dialog():
+        await asyncio.sleep(1)
         await p.send_key(Keycode.SPACEBAR, 0.1)
 
     await asyncio.sleep(.5)
@@ -38,7 +39,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.8)
@@ -75,7 +76,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -92,7 +93,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await asyncio.sleep(7)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -106,7 +107,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await asyncio.sleep(4)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -121,7 +122,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await asyncio.sleep(1.5)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -130,7 +131,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -142,7 +143,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.teleport(XYZ(11749.1123046875, -189.94265747070312, 1219.797119140625))
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -151,7 +152,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -166,7 +167,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -193,7 +194,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
 
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -214,7 +215,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
             await p.wait_for_zone_change(zone)
 
             while not await p.is_in_npc_range():
-                pass
+                await asyncio.sleep(1)
             zone = await p.zone_name()
             while await p.is_in_npc_range():
                 await asyncio.sleep(.4)
@@ -230,7 +231,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -243,7 +244,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         
         await p.teleport(XYZ(float(x), float(y), float(z)))
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -252,7 +253,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.wait_for_zone_change(zone)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -271,7 +272,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         # Obelisk 1 (to Tomb of Storms)
         await p.teleport(XYZ(-3287.2294921875, -2826.498779296875, -35.353118896484375))
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
 
         # print('sent x press for obelisk 1')
         while await p.is_in_npc_range():
@@ -287,7 +288,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         # Obelisk 2 (to Tomb of Storms)
         await p.teleport(XYZ(-4532.013671875, -2590.87451171875, -35.353668212890625))
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
 
         while await p.is_in_npc_range():
             await asyncio.sleep(.4)
@@ -301,7 +302,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         # Obelisk 3 (to Tomb of Storms)
         await p.teleport(XYZ(-4274.5419921875, -1374.5045166015625, -35.353607177734375))
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
 
         await asyncio.sleep(.5)
         while await p.is_in_npc_range():
@@ -364,7 +365,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.teleport(XYZ(float(x), float(y), float(z)))
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await p.send_key(Keycode.X, 0.1)
@@ -381,7 +382,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await asyncio.sleep(.5)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await p.send_key(Keycode.X, 0.1)
@@ -439,7 +440,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await asyncio.sleep(2)
 
         while not await p.is_in_npc_range():
-            pass
+            await asyncio.sleep(1)
         zone = await p.zone_name()
         while await p.is_in_npc_range():
             await p.send_key(Keycode.X, 0.1)
@@ -477,7 +478,7 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
 async def interactiveTeleportToZone(p: Client, menuButtonNumber):
 
     while not await p.is_in_npc_range():
-        pass
+        await asyncio.sleep(1)
 
     while await p.is_in_npc_range():
         await p.send_key(Keycode.X, 0.1)
@@ -578,7 +579,7 @@ async def read_control_checkbox_text(checkbox: Window) -> str:
 # trace back to the nearest spiral door and teleport to destinationWorld
 async def goToNewWorld(p: Client, destinationWorld):
     while not await p.is_in_npc_range():
-        pass
+        await asyncio.sleep(1)
 
     if await p.is_in_npc_range():
         await p.send_key(Keycode.X, 0.1)
