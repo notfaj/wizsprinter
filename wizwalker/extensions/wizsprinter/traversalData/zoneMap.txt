@@ -10,8 +10,12 @@ ZONEDOOR;WizardCity/WC_Ravenwood_Teleporter
 		WizardCity/WC_Ravenwood;WizardCity/WC_Hub
 			WizardCity/WC_Hub;WizardCity/WC_Streets/Interiors/WC_PET_Park
 			WizardCity/WC_Hub;WizardCity/Interiors/WC_Headmistress_House
-			WizardCity/WC_Hub;WizardCity/WC_Golem_Tower
 			WizardCity/WC_Hub;WizardCity/WC_NightSide
+				WizardCity/WC_NightSide;WizardCity/Interiors/WC_SchoolDeath
+				WizardCity/WC_NightSide;G14_DM/DM_Z01_CastleDarkmoor
+					G14_DM/DM_Z01_CastleDarkmoor;G14_DM/DM_Z04_LandingZone2
+					G14_DM/DM_Z01_CastleDarkmoor;G14_DM/DM_Z06_Bridge
+			WizardCity/WC_Hub;WizardCity/WC_Golem_Tower
 				WizardCity/WC_Golem_Tower;WizardCity/WC_Streets/WC_Golem_Tower/WC_Golem_Tower_1
 			WizardCity/WC_Hub;WizardCity/WC_Streets/WC_Unicorn
 				WizardCity/WC_Streets/WC_Unicorn;WizardCity/WC_Duel_Arena

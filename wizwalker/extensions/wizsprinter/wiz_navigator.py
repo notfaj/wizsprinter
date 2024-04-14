@@ -735,6 +735,16 @@ async def hardcoded_weird_zones(client: Client, currentZone: str, currentWorld: 
                 currentZone = await client.zone_name()
                 currentWorld = currentZone.split('/', 1)[0]
             return currentZone, currentWorld
+        elif "G14_DM" in currentZone:
+            if not currentZone == "G14_DM/DM_Z01_CastleDarkmoor":
+                await client.send_key(Keycode.END)
+                await client.wait_for_zone_change(currentZone)
+            while currentZone not in worldHubsList:
+                await client.teleport(XYZ(-16.90641975402832,-3460.568359375,-125.93180847167969))
+                await client.wait_for_zone_change(currentZone)
+                currentZone = await client.zone_name()
+                currentWorld = currentZone.split('/', 1)[0]
+            return currentZone, currentWorld
     return currentZone, currentWorld
 
 @logger.catch()
@@ -748,10 +758,11 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
     pathToCurrentZoneStack = []
     pathToDestinationStack = []
 
-    if "Aquila" in destinationWorld:
+    if "Aquila" in destinationWorld or "G14_DM" in destinationWorld:
         destinationWorld = "WizardCity"
-    elif "G14_" in destinationWorld:
+    elif "G14_SB" in destinationWorld:
         destinationWorld = "Krokotopia"
+
 
     currentZone, currentWorld = await hardcoded_weird_zones(p, currentZone, currentWorld, destinationWorld)
     # user may not be in the correct world.  Find the nearest spiral door and teleport to the correct world
@@ -1071,6 +1082,9 @@ async def toZoneDisplayName(clients, destinationZoneDisplay):
 @logger.catch()
 async def toZone(clients, destinationZone):
     currentZone = await clients[0].zone_name()
+    
+    if currentZone == destinationZone: # save time 
+        return
     worldName = currentZone.split('/', 1)[0]
 
     interactiveTeleportersOriginal = await parseFile("traversalData/interactiveTeleporters.txt", worldName)
@@ -1159,7 +1173,7 @@ async def main(clientHandler):
     
     try:
         # await toZoneDisplayName(clients, 'golem court')
-        await toZone(clients, "Wallaru/WL_Z01_Hub")
+        await toZone(clients, "G14_DM/DM_Z04_LandingZone2")
         # await toZone(clients, "Empyrea/EM_Z10_PortAero")
         
     finally:
