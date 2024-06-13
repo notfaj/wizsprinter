@@ -27,6 +27,10 @@ async def go_through_dialog(p):
 
 @logger.catch()
 async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
+    while await p.is_loading() or await p.zone_name() is None:
+        await asyncio.sleep(1)
+    await asyncio.sleep(1)
+
     # standard zone gate, just teleport
     if zoneAccessType == 'standard':
         zone = await p.zone_name()
@@ -472,6 +476,8 @@ async def gateTypeDifferentiation(x, y, z, p: Client, zoneAccessType):
         await p.teleport(XYZ(7662.78564453125, 7625.587890625, 1265.4591064453125))
         await asyncio.sleep(.6)
 
+    while await p.is_loading() or await p.zone_name() is None:
+        await asyncio.sleep(1)
 
 # uses an interactive teleporter (such as those in empyrea and later worlds) to teleport between zones
 @logger.catch()
@@ -970,7 +976,6 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
                             x = splitString[1].strip()
                             y = splitString[2].strip()
                             z = splitString[3].strip()
-
                             await gateTypeDifferentiation(float(x), float(y), float(z), p, splitString[0])
 
                             currentZone = await p.zone_name()
@@ -1173,7 +1178,7 @@ async def main(clientHandler):
     
     try:
         # await toZoneDisplayName(clients, 'golem court')
-        await toZone(clients, "G14_DM/DM_Z04_LandingZone2")
+        await toZone(clients, "WizardCity/WC_Streets/Interiors/WC_OldeTown_AuctionHouse")
         # await toZone(clients, "Empyrea/EM_Z10_PortAero")
         
     finally:
