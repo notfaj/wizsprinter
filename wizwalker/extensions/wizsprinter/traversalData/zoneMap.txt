@@ -236,6 +236,18 @@ ZONEDOOR;Khrysalis/KR_Z00_Hub
 		Khrysalis/KR_Z05_FortRachias;Khrysalis/KR_Z06_CrescentBeach
 			Khrysalis/KR_Z06_CrescentBeach;Khrysalis/Interiors/KR_Z06_I01_Hermitcave
 END
+WORLD - Arcanum
+ZONEDOOR;Arcanum/AR_Z01_Hub
+	Arcanum/AR_Z01_Hub;Arcanum/Interiors/AR_Z01_AstalSchool
+	Arcanum/AR_Z01_Hub;Arcanum/Interiors/AR_Z01_StormSchool
+	Arcanum/AR_Z01_Hub;Arcanum/Interiors/AR_Z01_FireSchool
+	Arcanum/AR_Z01_Hub;Arcanum/Interiors/AR_Z01_IceSchool
+	Arcanum/AR_Z01_Hub;Arcanum/Interiors/AR_Z01_BalanceSchool
+	Arcanum/AR_Z01_Hub;Arcanum/Interiors/AR_Z01_DeathSchool
+	Arcanum/AR_Z01_Hub;Arcanum/Interiors/AR_Z01_MythSchool
+	Arcanum/AR_Z01_Hub;Arcanum/Interiors/AR_Z01_LifeSchool
+	Arcanum/AR_Z01_Hub;Arcanum/Interiors/AR_Z01_ShadowSchool
+END
 WORLD - Polaris
 ZONEDOOR;Polaris/PL_Z00_Walruskberg
 	Polaris/PL_Z00_Walruskberg;Polaris/Interiors/PL_Z00_Palace_04B
