@@ -519,7 +519,7 @@ async def interactiveTeleportToZone(p: Client, menuButtonNumber):
 @logger.catch()
 async def createStack(p1WorldName):
 
-    lines = await parseFile("traversalData/zoneMap.txt", p1WorldName)
+    lines = await parseFile("zoneMap.txt", p1WorldName)
 
     lines = iter(lines)
     stack = []
@@ -697,8 +697,7 @@ async def goToNewWorld(p: Client, destinationWorld):
     return bigStackDestinations
 
 async def parseFile(fileName, worldName):
-    file = open(f"{cur_path}/{fileName}", "r")
-
+    file = open(os.path.join(cur_path, 'traversalData', fileName), "r")
     lines = file.readlines()
     start = 'WORLD - ' + worldName + '\n'
 
@@ -778,7 +777,7 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
 
         p1ZoneNameNew, p1WorldNameNew = await hardcoded_weird_zones(p, p1ZoneNameNew, p1WorldNameNew, destinationWorld)
         # read list of unique locations, such as NPC locations and spiral door coordinates
-        currentWorldObjectLocationsOriginal = await parseFile("traversalData/uniqueObjectLocations.txt", p1WorldNameNew)
+        currentWorldObjectLocationsOriginal = await parseFile("uniqueObjectLocations.txt", p1WorldNameNew)
 
         zoneDoor = ''
         zoneContainingZoneDoor = ''
@@ -839,11 +838,11 @@ async def goToDestination(p: Client, destinationZone, p1WorldName, bigStackDesti
     # for certain worlds, check if there is a teleporter between currentZone and destinationZone before traversing zones manually
     teleportedToZone = False
     if p1WorldName in ['Empyrea', 'Karamelle', 'Lemuria']:
-        interactiveTeleportersOriginal = await parseFile('traversalData/interactiveTeleporters.txt', p1WorldName)
+        interactiveTeleportersOriginal = await parseFile('interactiveTeleporters.txt', p1WorldName)
         teleportedToZone = await teleportToInteractiveTeleportIfAvailable(p, currentZone, destinationZone, interactiveTeleportersOriginal)
 
     # contains data about gates between zones
-    linesOriginal = await parseFile("traversalData/gates_list.txt", p1WorldName)
+    linesOriginal = await parseFile("gates_list.txt", p1WorldName)
 
     # iterate over the zonemap (bigStackDestinations) and find the index containing the player's current zone as well as index containing their destination
     if teleportedToZone == False:
@@ -1041,8 +1040,8 @@ async def toZoneDisplayName(clients, destinationZoneDisplay):
     worldList = ["WizardCity", "Krokotopia", "Marleybone", "MooShu", "DragonSpire", "Grizzleheim", "Celestia",
                  "Wysteria", "Zafaria", "Avalon", "Azteca", "Khrysalis", "Polaris", "Arcanum", "Mirage", "Empyrea",
                  "Karamelle", "Lemuria"]
+    file = open(os.path.join(cur_path, 'traversalData', 'displayZones.txt'), "r")
 
-    file = open(f"{cur_path}/{'traversalData/displayZones.txt'}", "r")
     lines = file.readlines()
     lines = iter(lines)
     destinationZone = ''
@@ -1092,7 +1091,7 @@ async def toZone(clients, destinationZone):
         return
     worldName = currentZone.split('/', 1)[0]
 
-    interactiveTeleportersOriginal = await parseFile("traversalData/interactiveTeleporters.txt", worldName)
+    interactiveTeleportersOriginal = await parseFile("interactiveTeleporters.txt", worldName)
     bigStackDestinations = await createStack(worldName)
 
     try:
